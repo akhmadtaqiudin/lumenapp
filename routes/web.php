@@ -11,6 +11,29 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+// $router->get('/', function () use ($router) {
+//     return $router->app->version();
+// });
+$router->group(['prefix' => 'api/master'], function($router){
+
+	/* provinsi */
+	$router->get('/provinsi', 'Master\ProvinsiController@getAll');
+	$router->get('/provinsi/{id}', 'Master\ProvinsiController@getById');
+	$router->post('/provinsi', 'Master\ProvinsiController@saveProvinsi');
+	$router->put('/provinsi', 'Master\ProvinsiController@update');
+	$router->delete('/provinsi/{id}', 'Master\ProvinsiController@delete');
+
+	/* kota */
+	$router->get('/kota', 'Master\KotaController@getKota');
+	$router->get('/kota/{id}', 'Master\KotaController@getById');
+	$router->post('/kota', 'Master\KotaController@saveKota');
+	$router->put('/kota', 'Master\KotaController@update');
+	$router->delete('/kota/{id}', 'Master\KotaController@delete');
+
+	/* Kecamatan */
+	$router->get('/kecamatan', 'Master\KecamatanController@getKecamatan');
+	$router->get('/kecamatan/{id}', 'Master\KecamatanController@getById');
+	$router->post('/kecamatan', 'Master\KecamatanController@saveKecamatan');
+	$router->put('/kecamatan', 'Master\KecamatanController@update');
+	$router->delete('/kecamatan/{id}', 'Master\KecamatanController@delete');
 });

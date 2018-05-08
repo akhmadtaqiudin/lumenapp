@@ -103,20 +103,19 @@ class Controller extends BaseController
         }
 	}
 
-	public function delete(Request $request){
+	public function delete($id){
 
 		$model = $this->model;
 		$primaryKey = $model->getKeyName();
-		$input = $request->input();
-		$model = $model->find($input[$primaryKey]);
+		$model = $model->find($id);
 
 		$delete =  $model->delete();
 		if ($delete) {
 			$message = env('RESPONSE_DELETE_SUCCESS');
-			return $this->renderResponse($input, true, $message);
+			return $this->renderResponse($model, true, $message);
         }else{
         	$message = env('RESPONSE_DELETE_FAILED');
-            return $this->renderResponse($input, false, $message);
+            return $this->renderResponse($model, false, $message);
         }
 	}
 
