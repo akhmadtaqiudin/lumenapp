@@ -21,6 +21,19 @@ class Controller extends BaseController
 		return response($res);
 	}
 
+	public function encode($input){
+      return Crypt::encryptString($input);
+    }
+
+    public function decode($input){        
+        try {
+            $decrypted = Crypt::decryptString($input);
+        } catch (DecryptException $e) {
+            $decrypted = $e->getMessage();
+        }
+        return $decrypted;
+    }
+
     public function create(Request $request){
 
 		$model = $this->model;

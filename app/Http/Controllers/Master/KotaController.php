@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Master\Kota;
-
+use Validator;
 
 class KotaController extends Controller{
 
@@ -14,7 +14,10 @@ class KotaController extends Controller{
     }
 
     public function saveKota(Request $request){
+
+        $model = new kota();
     	$input = $request->input();
+        $rules = $model->getRoles();
 
     	$result = Kota::create($input);
     	if(!$result){
